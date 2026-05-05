@@ -4,9 +4,8 @@
 .idea
 .vscode
 
-# Build artifacts
+# Build artifacts (theme.zip is committed in dist/, see dist/.gitignore)
 theme.zip
-dist/
 node_modules/
 
 # Shopify CLI

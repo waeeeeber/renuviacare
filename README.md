@@ -4,7 +4,14 @@ Custom Shopify Online Store 2.0 Theme für die Schweizer Selfcare-Brand **Renuvi
 
 ## Theme installieren
 
-### Option A: Fertige theme.zip aus GitHub Actions
+### Option A (am einfachsten): Pre-built ZIP aus dem Repo
+
+Direkter Download:
+👉 **`dist/renuvia-care-theme.zip`** im Repo öffnen → rechts oben **Download** klicken.
+
+Diese ZIP ist bereits korrekt strukturiert (Theme-Ordner direkt im Root) und kann ohne Umpacken direkt in **Online Store → Themes → Add theme → Upload zip file** hochgeladen werden.
+
+### Option B: Fertige theme.zip aus GitHub Actions
 
 1. Geh zu **Actions → Build Shopify Theme ZIP** im Repo
 2. Wähle den letzten erfolgreichen Run, scrolle zu **Artifacts** und lade `renuvia-care-theme` herunter (enthält die `renuvia-care-theme.zip`)
