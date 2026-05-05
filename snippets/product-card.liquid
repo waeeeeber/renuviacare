@@ -1,0 +1,25 @@
+{%- liquid
+  assign product = card_product
+-%}
+<a href="{{ product.url }}" class="card" style="display:block; padding:0; overflow:hidden;">
+  <div style="position:relative; aspect-ratio:1/1; background: var(--color-rose-100);">
+    {%- if product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 800 }}"
+           alt="{{ product.featured_image.alt | escape }}"
+           loading="lazy"
+           style="width:100%; height:100%; object-fit:cover;">
+    {%- endif -%}
+    {%- if product.compare_at_price > product.price -%}
+      <span class="badge" style="position:absolute; top:1rem; left:1rem;">Sale</span>
+    {%- endif -%}
+  </div>
+  <div style="padding:1.25rem;">
+    <h3 class="font-display" style="font-size:1.125rem; margin:0 0 .35rem;">{{ product.title }}</h3>
+    <div class="price">
+      <span class="font-medium">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="price-compare text-sm">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</a>

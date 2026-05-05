@@ -1,0 +1,31 @@
+<section class="container" style="padding-bottom: 6rem;">
+  <div class="newsletter-card">
+    <div>
+      <h3>{{ section.settings.heading }}</h3>
+      <p class="text-muted" style="margin-top:.75rem; max-width: 28rem;">{{ section.settings.subheading }}</p>
+    </div>
+    {% form 'customer', class: 'newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" required class="input"
+             placeholder="{{ 'general.newsletter.placeholder' | t }}"
+             aria-label="{{ 'general.newsletter.label' | t }}">
+      <button type="submit" class="btn btn-primary">{{ 'general.newsletter.button' | t }}</button>
+      {%- if form.posted_successfully? -%}
+        <p style="color: var(--color-rose-600);">{{ 'general.newsletter.success' | t }}</p>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "−10% auf deine erste Bestellung." },
+    { "type": "textarea", "id": "subheading", "label": "Untertext", "default": "Abonniere unseren Newsletter und erhalte Selfcare-Tipps, Aktionen und Neuheiten direkt in dein Postfach." }
+  ],
+  "presets": [
+    { "name": "Newsletter" }
+  ]
+}
+{% endschema %}

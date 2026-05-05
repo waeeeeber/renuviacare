@@ -1,0 +1,82 @@
+<section class="hero">
+  <div class="container grid grid-2">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="badge">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h1 style="margin-top: 1.5rem;">
+        {{ section.settings.heading | newline_to_br }}
+      </h1>
+      {%- if section.settings.subheading != blank -%}
+        <p class="text-muted" style="font-size:1.125rem; max-width: 28rem; margin-top: 1.5rem;">
+          {{ section.settings.subheading }}
+        </p>
+      {%- endif -%}
+      <div class="hero-cta">
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="btn btn-primary">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a href="{{ section.settings.button2_link }}" class="btn btn-outline">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.show_rating -%}
+        <div class="rating-row">
+          <span class="stars">
+            {% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}
+          </span>
+          <span class="text-sm text-muted">{{ section.settings.rating_text }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="hero-image-wrap">
+      <div class="hero-glow"></div>
+      <div class="hero-image">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}" loading="eager">
+        {%- else -%}
+          <img src="{{ 'hero-placeholder.jpg' | asset_url }}" alt="" loading="eager" onerror="this.style.display='none';">
+        {%- endif -%}
+      </div>
+      {%- if section.settings.float_title != blank -%}
+        <div class="hero-floating">
+          <div class="dot">✦</div>
+          <div class="text-sm">
+            <div class="font-medium">{{ section.settings.float_title }}</div>
+            <div class="text-muted text-xs">{{ section.settings.float_subtitle }}</div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Badge", "default": "✦ Frühlings-Sale · −10%" },
+    {
+      "type": "textarea", "id": "heading", "label": "Überschrift",
+      "default": "Deine Dusche.\nDein Spa."
+    },
+    {
+      "type": "textarea", "id": "subheading", "label": "Untertext",
+      "default": "Das Renuvia SilkTouch™ verwandelt deine tägliche Routine in ein Selfcare-Ritual. Sanft wirksames Peeling, antibakteriell – made for glowing skin."
+    },
+    { "type": "text", "id": "button_label", "label": "Button 1 Text", "default": "Jetzt entdecken" },
+    { "type": "url", "id": "button_link", "label": "Button 1 Link" },
+    { "type": "text", "id": "button2_label", "label": "Button 2 Text", "default": "Unsere Story" },
+    { "type": "url", "id": "button2_link", "label": "Button 2 Link" },
+    { "type": "image_picker", "id": "image", "label": "Bild" },
+    { "type": "checkbox", "id": "show_rating", "label": "Rating anzeigen", "default": true },
+    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "1’000+ zufriedene Kund:innen" },
+    { "type": "text", "id": "float_title", "label": "Float Card Titel", "default": "In 15 Min trocken" },
+    { "type": "text", "id": "float_subtitle", "label": "Float Card Untertitel", "default": "Hygienisch dank Silberionen" }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

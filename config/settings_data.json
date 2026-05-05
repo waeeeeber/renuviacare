@@ -1,0 +1,16 @@
+{
+  "current": {
+    "brand_name": "Renuvia",
+    "color_ink": "#0B0B0F",
+    "color_cream": "#FAF7F2",
+    "color_accent": "#E0577A"
+  },
+  "presets": {
+    "Default": {
+      "brand_name": "Renuvia",
+      "color_ink": "#0B0B0F",
+      "color_cream": "#FAF7F2",
+      "color_accent": "#E0577A"
+    }
+  }
+}

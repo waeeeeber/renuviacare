@@ -1,0 +1,58 @@
+{
+  "general": {
+    "search": { "placeholder": "Suchen", "submit": "Suchen", "title": "Suche" },
+    "404": {
+      "title": "Seite nicht gefunden",
+      "subtext": "Die gesuchte Seite existiert leider nicht.",
+      "link": "Zurück zur Startseite"
+    },
+    "newsletter": {
+      "label": "E-Mail-Adresse",
+      "placeholder": "deine@email.ch",
+      "button": "Abonnieren",
+      "success": "Danke! Schau in dein Postfach für deinen Gutscheincode."
+    },
+    "pagination": {
+      "previous": "Zurück",
+      "next": "Weiter"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "In den Warenkorb",
+      "sold_out": "Ausverkauft",
+      "unavailable": "Nicht verfügbar",
+      "quantity": "Menge",
+      "color": "Farbe",
+      "save": "Spare {{ savings }}"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Warenkorb",
+      "empty": "Dein Warenkorb ist leer.",
+      "continue_shopping": "Weiter shoppen",
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "shipping_at_checkout": "An der Kasse berechnet",
+      "total": "Gesamt",
+      "checkout": "Zur Kasse",
+      "remove": "Entfernen"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "message": "Nachricht",
+      "send": "Nachricht senden",
+      "success": "Vielen Dank! Wir melden uns in Kürze bei dir."
+    }
+  },
+  "blogs": {
+    "article": {
+      "read_more": "Weiterlesen"
+    }
+  }
+}

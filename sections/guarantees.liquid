@@ -1,0 +1,54 @@
+<section class="container" style="padding: 0 1rem 4rem;">
+  <div class="card" style="display:grid; grid-template-columns: 1fr; gap: 1rem; padding: 2rem;">
+    <style>
+      @media (min-width: 640px) { .guarantees-block { grid-template-columns: repeat(3, 1fr) !important; } }
+    </style>
+    <div class="guarantees-block" style="display:grid; grid-template-columns: 1fr; gap: 1rem;">
+      {%- for block in section.blocks -%}
+        <div class="flex items-center gap-4" {{ block.shopify_attributes }}>
+          <div class="feature-icon" style="margin:0;">{% render block.settings.icon %}</div>
+          <div>
+            <div class="font-medium">{{ block.settings.title }}</div>
+            <div class="text-sm text-muted">{{ block.settings.body }}</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Garantien",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon", "default": "icon-truck",
+          "options": [
+            { "value": "icon-truck", "label": "Versand" },
+            { "value": "icon-return", "label": "Rückgabe" },
+            { "value": "icon-lock", "label": "Sicher" },
+            { "value": "icon-shield", "label": "Schild" },
+            { "value": "icon-sparkle", "label": "Sparkle" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Titel", "default": "Gratis Versand" },
+        { "type": "text", "id": "body", "label": "Text", "default": "Innerhalb der Schweiz" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "item", "settings": { "icon": "icon-truck", "title": "Gratis Versand", "body": "Innerhalb der Schweiz" } },
+      { "type": "item", "settings": { "icon": "icon-return", "title": "30 Tage Rückgabe", "body": "Risikofrei testen" } },
+      { "type": "item", "settings": { "icon": "icon-lock", "title": "Sicher bezahlen", "body": "TWINT, Karte, PayPal" } }
+    ]
+  },
+  "presets": [
+    { "name": "Garantien" }
+  ]
+}
+{% endschema %}

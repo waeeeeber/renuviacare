@@ -1,0 +1,52 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <button class="icon-btn menu-btn" data-menu-open aria-label="Menü öffnen">
+      {% render 'icon-menu' %}
+    </button>
+
+    <a href="{{ routes.root_url }}" class="brand">
+      {{ settings.brand_name | default: shop.name }}<span class="dot">.</span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <button class="icon-btn" data-cart-open aria-label="Warenkorb öffnen">
+      {% render 'icon-cart' %}
+      <span class="cart-count" data-cart-count style="display:none;">0</span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav-backdrop" data-mobile-nav-backdrop></div>
+<aside class="mobile-nav" data-mobile-nav>
+  <div class="flex items-center justify-between">
+    <span class="brand">{{ settings.brand_name | default: shop.name }}<span class="dot">.</span></span>
+    <button data-menu-close aria-label="Schliessen">{% render 'icon-close' %}</button>
+  </div>
+  <nav class="mobile-nav-list">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}" data-menu-close>{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+</aside>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Hauptmenü",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [
+    { "name": "Header" }
+  ]
+}
+{% endschema %}

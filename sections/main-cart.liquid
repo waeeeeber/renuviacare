@@ -1,0 +1,71 @@
+<div class="cart-page container">
+  <h1 style="margin-bottom: 2.5rem;">{{ 'cart.general.title' | t }}</h1>
+
+  {%- if cart.item_count == 0 -%}
+    <div class="card" style="text-align:center; padding: 5rem 1rem;">
+      <p class="text-muted" style="margin-bottom:1.5rem;">{{ 'cart.general.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary">{{ 'cart.general.continue_shopping' | t }}</a>
+    </div>
+  {%- else -%}
+    <form method="post" action="{{ routes.cart_url }}" id="cart">
+      <div class="cart-grid">
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          {%- for item in cart.items -%}
+            <div class="card cart-line">
+              <div class="cart-line-img">
+                {%- if item.image -%}<img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}">{%- endif -%}
+              </div>
+              <div class="cart-line-meta">
+                <div class="flex justify-between gap-3">
+                  <div>
+                    <p class="font-medium" style="margin:0;">
+                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    </p>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <p class="text-sm text-muted" style="margin:.15rem 0 0;">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+                  </div>
+                  <span class="font-medium">{{ item.final_line_price | money }}</span>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="qty">
+                    <a href="{{ item.url_to_remove }}" data-cart-line-decrease style="padding:.65rem 1rem;">−</a>
+                    <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" data-cart-line-qty>
+                    <button type="submit" name="update" style="padding:.65rem 1rem;">+</button>
+                  </div>
+                  <a href="{{ item.url_to_remove }}" class="text-sm" style="color: rgba(11,11,15,.55);">
+                    {{ 'cart.general.remove' | t }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <aside class="card cart-summary">
+          <h2 class="font-display" style="font-size:1.5rem; margin-bottom:1rem;">Zusammenfassung</h2>
+          <div class="row">
+            <span class="text-muted">{{ 'cart.general.subtotal' | t }}</span>
+            <span>{{ cart.items_subtotal_price | money }}</span>
+          </div>
+          <div class="row">
+            <span class="text-muted">{{ 'cart.general.shipping' | t }}</span>
+            <span style="color:#16a34a;">Gratis</span>
+          </div>
+          <div class="total flex justify-between">
+            <span class="font-medium">{{ 'cart.general.total' | t }}</span>
+            <span class="font-display" style="font-size:1.25rem;">{{ cart.total_price | money }}</span>
+          </div>
+          <button type="submit" name="checkout" class="btn btn-primary btn-block" style="margin-top:1rem;">
+            {{ 'cart.general.checkout' | t }}
+          </button>
+          <p class="text-xs text-muted text-center" style="margin:.75rem 0 0;">Sichere Zahlung · TWINT, Karte, PayPal</p>
+        </aside>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Warenkorb", "settings": [] }
+{% endschema %}

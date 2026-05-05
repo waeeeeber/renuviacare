@@ -1,0 +1,129 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<article class="product container">
+  <div class="grid grid-2">
+    <div data-gallery>
+      <div class="product-image" data-main-image>
+        {%- if current_variant.featured_image != blank -%}
+          <img src="{{ current_variant.featured_image | image_url: width: 1400 }}" alt="{{ current_variant.featured_image.alt | escape }}">
+        {%- elsif product.featured_image != blank -%}
+          <img src="{{ product.featured_image | image_url: width: 1400 }}" alt="{{ product.title | escape }}">
+        {%- endif -%}
+        {%- if product.compare_at_price > product.price -%}
+          <span class="product-image-badge">−{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
+        {%- endif -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="product-thumbs">
+          {%- for image in product.images -%}
+            <button type="button" data-thumb class="product-thumb {% if forloop.first %}is-active{% endif %}" aria-label="Bild {{ forloop.index }}">
+              <img src="{{ image | image_url: width: 400 }}" data-full="{{ image | image_url: width: 1400 }}" alt="{{ image.alt | escape }}" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="product-info">
+      <div>
+        <p class="eyebrow">{{ product.type | default: 'Selfcare' }}</p>
+        <h1 style="margin-top:.5rem;">{{ product.title }}</h1>
+        <div class="rating-row">
+          <span class="stars">
+            {% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}
+          </span>
+          <span class="text-sm text-muted">4.9 · 1’000+ Bewertungen</span>
+        </div>
+      </div>
+
+      {%- if product.description != blank -%}
+        <div class="text-muted">{{ product.description }}</div>
+      {%- endif -%}
+
+      <div class="price">
+        <span class="price-amount" data-product-price>{{ current_variant.price | money }}</span>
+        <span class="price-compare" data-product-compare {% if current_variant.compare_at_price <= current_variant.price %}style="display:none;"{% endif %}>
+          {{ current_variant.compare_at_price | money }}
+        </span>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="badge">Sale</span>
+        {%- endif -%}
+      </div>
+
+      <form method="post" action="{{ routes.cart_add_url }}" data-product-form data-variant-picker
+            data-variants='{{ product.variants | json | escape }}' enctype="multipart/form-data">
+        {%- if product.variants.size > 1 -%}
+          <div class="variants-label">
+            {{ 'products.product.color' | t }}: <span class="text-muted" data-variant-label>{{ current_variant.title }}</span>
+          </div>
+          <div class="swatches">
+            {%- for v in product.variants -%}
+              <button type="button" class="swatch {% if v.id == current_variant.id %}is-active{% endif %}"
+                      data-variant-id="{{ v.id }}"
+                      style="background: {{ v.metafields.theme.swatch | default: '#F5EFE6' }};"
+                      aria-label="{{ v.title | escape }}"></button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+        <div class="cta-row" style="margin-top:1.5rem;">
+          <div class="qty">
+            <button type="button" data-qty-step="-1" aria-label="Weniger">−</button>
+            <input type="number" name="quantity" value="1" min="1" inputmode="numeric">
+            <button type="button" data-qty-step="1" aria-label="Mehr">+</button>
+          </div>
+          <button type="submit" class="btn btn-primary" {% unless current_variant.available %}disabled{% endunless %}>
+            {%- if current_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+        </div>
+      </form>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="highlights">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'highlight' -%}
+              <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="guarantees-row">
+        <div class="guarantee-item">{% render 'icon-truck' %}<span>Gratis Versand</span></div>
+        <div class="guarantee-item">{% render 'icon-return' %}<span>30 Tage Rückgabe</span></div>
+        <div class="guarantee-item">{% render 'icon-lock' %}<span>Sicher bezahlen</span></div>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Produktseite",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Highlight",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Mit antibakteriellen Silberionen" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "default": {
+    "blocks": [
+      { "type": "highlight", "settings": { "text": "Mit antibakteriellen Silberionen" } },
+      { "type": "highlight", "settings": { "text": "Quick-Dry Technologie" } },
+      { "type": "highlight", "settings": { "text": "Ergonomisch verlängert" } },
+      { "type": "highlight", "settings": { "text": "Dermatologisch empfohlen" } }
+    ]
+  }
+}
+{% endschema %}

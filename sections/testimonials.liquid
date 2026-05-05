@@ -1,0 +1,51 @@
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="badge">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="grid grid-3">
+      {%- for block in section.blocks -%}
+        <div class="card" {{ block.shopify_attributes }}>
+          <span class="stars" style="margin-bottom:.75rem;">
+            {% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}{% render 'icon-star' %}
+          </span>
+          <p class="testimonial-text">"{{ block.settings.text }}"</p>
+          <p class="testimonial-author">— {{ block.settings.author }}{% if block.settings.verified %}, verifizierter Kauf{% endif %}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Badge", "default": "Reviews" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "Geliebt von 1’000+ Kund:innen." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Meine Haut fühlt sich seidig weich an – ich nutze es jeden Tag." },
+        { "type": "text", "id": "author", "label": "Name", "default": "Lara M." },
+        { "type": "checkbox", "id": "verified", "label": "Verifizierter Kauf", "default": true }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "default": {
+    "blocks": [
+      { "type": "review", "settings": { "author": "Lara M.", "text": "Meine Haut fühlt sich seidig weich an – ich nutze es jeden Tag." } },
+      { "type": "review", "settings": { "author": "Sophie K.", "text": "Endlich erreiche ich meinen Rücken mühelos. Game-Changer!" } },
+      { "type": "review", "settings": { "author": "Anna T.", "text": "Der Silberionen-Effekt ist top. Trocknet super schnell." } }
+    ]
+  },
+  "presets": [
+    { "name": "Testimonials" }
+  ]
+}
+{% endschema %}

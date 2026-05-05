@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": { "type": "main-product" },
+    "features": { "type": "feature-grid" },
+    "testimonials": { "type": "testimonials" }
+  },
+  "order": ["main", "features", "testimonials"]
+}

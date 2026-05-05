@@ -1,0 +1,23 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "newsletter": { "type": "newsletter" },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "shop": {
+          "type": "menu",
+          "settings": { "heading": "Shop" }
+        },
+        "company": {
+          "type": "menu",
+          "settings": { "heading": "Unternehmen" }
+        },
+        "contact": { "type": "contact" }
+      },
+      "block_order": ["shop", "company", "contact"]
+    }
+  },
+  "order": ["newsletter", "footer"]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Renuvia Care",
+    "theme_version": "1.0.0",
+    "theme_author": "Renuvia Care",
+    "theme_documentation_url": "https://renuvia-care.ch",
+    "theme_support_email": "info@renuvia-care.ch"
+  },
+  {
+    "name": "Logo & Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Markenname",
+        "default": "Renuvia"
+      }
+    ]
+  },
+  {
+    "name": "Farben",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink (Schwarz)",
+        "default": "#0B0B0F"
+      },
+      {
+        "type": "color",
+        "id": "color_cream",
+        "label": "Cream (Hintergrund)",
+        "default": "#FAF7F2"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Akzent (Rosé)",
+        "default": "#E0577A"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok URL" },
+      { "type": "url", "id": "social_facebook", "label": "Facebook URL" }
+    ]
+  }
+]

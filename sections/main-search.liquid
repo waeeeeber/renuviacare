@@ -1,0 +1,24 @@
+<section class="container section">
+  <div class="section-head">
+    <h1>{{ 'general.search.title' | t }}</h1>
+    <form action="{{ routes.search_url }}" method="get" style="margin-top:1.5rem;">
+      <input type="hidden" name="type" value="product">
+      <input type="search" name="q" value="{{ search.terms | escape }}" class="field-input" placeholder="{{ 'general.search.placeholder' | t }}">
+    </form>
+  </div>
+  {%- if search.performed -%}
+    {%- if search.results_count == 0 -%}
+      <p class="text-muted">Keine Ergebnisse für "{{ search.terms | escape }}".</p>
+    {%- else -%}
+      <div class="grid grid-3">
+        {%- for product in search.results -%}
+          {% render 'product-card', card_product: product %}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Suche", "settings": [] }
+{% endschema %}

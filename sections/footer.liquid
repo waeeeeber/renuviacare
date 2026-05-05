@@ -1,0 +1,101 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="font-size:1.5rem;">{{ settings.brand_name | default: shop.name }}<span class="dot">.</span></div>
+        <p class="text-sm" style="color: rgba(250,247,242,.7); max-width: 22rem; margin-top: 1rem;">
+          {{ section.settings.tagline }}
+        </p>
+        {%- if settings.social_instagram != blank or settings.social_tiktok != blank or settings.social_facebook != blank -%}
+          <div class="flex gap-3" style="margin-top:1.5rem;">
+            {%- if settings.social_instagram != blank -%}
+              <a href="{{ settings.social_instagram }}" aria-label="Instagram" style="color: rgba(250,247,242,.7);">Instagram</a>
+            {%- endif -%}
+            {%- if settings.social_tiktok != blank -%}
+              <a href="{{ settings.social_tiktok }}" aria-label="TikTok" style="color: rgba(250,247,242,.7);">TikTok</a>
+            {%- endif -%}
+            {%- if settings.social_facebook != blank -%}
+              <a href="{{ settings.social_facebook }}" aria-label="Facebook" style="color: rgba(250,247,242,.7);">Facebook</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'menu' -%}
+          <div {{ block.shopify_attributes }}>
+            <h4>{{ block.settings.heading }}</h4>
+            <ul>
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- elsif block.type == 'contact' -%}
+          <div {{ block.shopify_attributes }}>
+            <h4>{{ block.settings.heading }}</h4>
+            <ul>
+              {%- assign lines = block.settings.address | newline_to_br | split: '<br />' -%}
+              {%- for line in lines -%}
+                <li>{{ line | strip }}</li>
+              {%- endfor -%}
+              {%- if block.settings.email != blank -%}
+                <li><a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></li>
+              {%- endif -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. Alle Rechte vorbehalten.</span>
+      <span>Gefertigt mit Liebe in der Schweiz 🇨🇭</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Dein Partner für hochwertige Selfcare. Hergestellt mit Sorgfalt in der Schweiz."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menü",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Überschrift", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menü" }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Kontakt",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Überschrift", "default": "Kontakt" },
+        {
+          "type": "textarea", "id": "address", "label": "Adresse",
+          "default": "Renuvia Care\nIndustriestrasse 23\n3178 Bösingen, CH"
+        },
+        { "type": "text", "id": "email", "label": "E-Mail", "default": "info@renuvia-care.ch" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "menu", "settings": { "heading": "Unternehmen" } },
+      { "type": "contact" }
+    ]
+  },
+  "presets": [
+    { "name": "Footer" }
+  ]
+}
+{% endschema %}

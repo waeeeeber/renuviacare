@@ -1,0 +1,63 @@
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="badge">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}<p>{{ section.settings.subheading }}</p>{%- endif -%}
+    </div>
+    <div class="grid grid-4">
+      {%- for block in section.blocks -%}
+        <div class="card feature-card" {{ block.shopify_attributes }}>
+          <div class="feature-icon">{% render block.settings.icon %}</div>
+          <h3 class="font-display" style="font-size:1.25rem; margin-bottom:.5rem;">{{ block.settings.title }}</h3>
+          <p class="text-sm text-muted" style="line-height:1.55; margin:0;">{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature Grid",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Badge", "default": "Warum Renuvia" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "Selfcare, neu gedacht." },
+    { "type": "textarea", "id": "subheading", "label": "Untertext", "default": "Wir kombinieren Schweizer Präzision mit dermatologischem Know-how – damit aus deiner Dusche ein tägliches Ritual wird." }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon", "default": "icon-leaf",
+          "options": [
+            { "value": "icon-leaf", "label": "Blatt" },
+            { "value": "icon-shield", "label": "Schild" },
+            { "value": "icon-arrows", "label": "Pfeile" },
+            { "value": "icon-sparkle", "label": "Sparkle" },
+            { "value": "icon-truck", "label": "Versand" },
+            { "value": "icon-return", "label": "Rückgabe" },
+            { "value": "icon-lock", "label": "Sicher" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Titel", "default": "Sanft wirksam" },
+        { "type": "textarea", "id": "body", "label": "Text", "default": "Entfernt abgestorbene Hautschuppen, ohne die Haut zu reizen." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "default": {
+    "blocks": [
+      { "type": "feature", "settings": { "icon": "icon-leaf", "title": "Sanft wirksam", "body": "Entfernt abgestorbene Hautschuppen, ohne die Haut zu reizen." } },
+      { "type": "feature", "settings": { "icon": "icon-arrows", "title": "Erreicht den Rücken", "body": "Verlängerte Form für müheloses Peelen schwer erreichbarer Stellen." } },
+      { "type": "feature", "settings": { "icon": "icon-shield", "title": "Silberionen-Hygiene", "body": "Antibakterielle Wirkung – trocknet in unter 15 Minuten." } },
+      { "type": "feature", "settings": { "icon": "icon-sparkle", "title": "Spa-Erlebnis", "body": "Verwandelt deine tägliche Dusche in eine Wellness-Routine." } }
+    ]
+  },
+  "presets": [
+    { "name": "Feature Grid" }
+  ]
+}
+{% endschema %}

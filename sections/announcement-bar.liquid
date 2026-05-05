@@ -1,0 +1,35 @@
+{%- if section.blocks.size > 0 -%}
+<div class="announcement">
+  <div class="container announcement-track">
+    {%- for block in section.blocks -%}
+      <span {{ block.shopify_attributes }}>✦ {{ block.settings.text }}</span>
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Ankündigungsleiste",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Nachricht",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Gratis Versand in der Schweiz" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "default": {
+    "blocks": [
+      { "type": "message", "settings": { "text": "Gratis Versand in der Schweiz" } },
+      { "type": "message", "settings": { "text": "30 Tage Zufriedenheitsgarantie" } }
+    ]
+  },
+  "presets": [
+    { "name": "Ankündigungsleiste" }
+  ]
+}
+{% endschema %}

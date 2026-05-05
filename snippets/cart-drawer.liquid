@@ -1,0 +1,18 @@
+<div class="drawer-backdrop" data-drawer-backdrop></div>
+<aside class="drawer" data-cart-drawer aria-hidden="true">
+  <div class="drawer-head">
+    <h2 class="font-display" style="font-size:1.25rem;">Dein Warenkorb</h2>
+    <button type="button" data-cart-close aria-label="Schliessen">{% render 'icon-close' %}</button>
+  </div>
+  <div class="drawer-body" data-drawer-body></div>
+  <div class="drawer-foot" data-drawer-foot style="display:none;">
+    <div class="flex justify-between text-sm">
+      <span class="text-muted">Zwischensumme</span>
+      <span class="font-medium" data-drawer-subtotal></span>
+    </div>
+    <p class="text-xs text-muted" style="margin:0;">Versand und Steuern werden im Checkout berechnet.</p>
+    <a href="{{ routes.cart_url }}" class="btn btn-primary btn-block">Zur Kasse</a>
+  </div>
+</aside>
+
+<script>window.shopMoneyFormat = {{ shop.money_format | json }};</script>

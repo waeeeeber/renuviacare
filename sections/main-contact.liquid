@@ -1,0 +1,70 @@
+<section class="container section">
+  <div class="grid grid-2">
+    <div>
+      <span class="badge">Kontakt</span>
+      <h1 style="margin-top:1rem;">{{ page.title | default: 'Wir sind für dich da.' }}</h1>
+      <div class="text-muted" style="margin-top:1.5rem; line-height:1.7;">{{ page.content }}</div>
+      {%- if section.settings.email != blank or section.settings.address != blank -%}
+        <div class="card" style="margin-top:1.5rem;">
+          {%- if section.settings.email != blank -%}
+            <div>
+              <div class="eyebrow">E-Mail</div>
+              <a href="mailto:{{ section.settings.email }}" class="font-display" style="font-size:1.25rem;">{{ section.settings.email }}</a>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.address != blank -%}
+            <div style="margin-top:1rem;">
+              <div class="eyebrow">Adresse</div>
+              <p>{{ section.settings.address | newline_to_br }}</p>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="card">
+      {%- form 'contact' -%}
+        {%- if form.posted_successfully? -%}
+          <div style="text-align:center; padding: 3rem 0;">
+            <div class="feature-icon" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border-radius: 999px;">✓</div>
+            <h2 style="font-size:1.5rem;">Vielen Dank.</h2>
+            <p class="text-muted">{{ 'contact.form.success' | t }}</p>
+          </div>
+        {%- else -%}
+          <h2 style="font-size:1.5rem;">Schreib uns</h2>
+          <div class="grid" style="grid-template-columns: 1fr 1fr; gap:1rem; margin-top:1rem;">
+            <label class="field">
+              <span class="field-label">{{ 'contact.form.name' | t }}</span>
+              <input type="text" name="contact[name]" class="field-input" required>
+            </label>
+            <label class="field">
+              <span class="field-label">{{ 'contact.form.email' | t }}</span>
+              <input type="email" name="contact[email]" class="field-input" required>
+            </label>
+          </div>
+          <label class="field" style="margin-top:1rem;">
+            <span class="field-label">Betreff</span>
+            <input type="text" name="contact[subject]" class="field-input">
+          </label>
+          <label class="field" style="margin-top:1rem;">
+            <span class="field-label">{{ 'contact.form.message' | t }}</span>
+            <textarea name="contact[body]" class="field-textarea" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top:1.25rem;">
+            {{ 'contact.form.send' | t }}
+          </button>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kontaktseite",
+  "settings": [
+    { "type": "text", "id": "email", "label": "E-Mail", "default": "info@renuvia-care.ch" },
+    { "type": "textarea", "id": "address", "label": "Adresse", "default": "Renuvia Care\nIndustriestrasse 23\n3178 Bösingen, CH" }
+  ]
+}
+{% endschema %}

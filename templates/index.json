@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "marquee": { "type": "marquee" },
+    "features": { "type": "feature-grid" },
+    "showcase": { "type": "product-showcase" },
+    "testimonials": { "type": "testimonials" },
+    "guarantees": { "type": "guarantees" }
+  },
+  "order": ["hero", "marquee", "features", "showcase", "testimonials", "guarantees"]
+}

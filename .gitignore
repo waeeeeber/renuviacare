@@ -1,11 +1,14 @@
-node_modules
-.next
-out
-dist
-.env*
-!.env.example
+# Editor / OS
 .DS_Store
 *.log
-.vercel
-next-env.d.ts
-tsconfig.tsbuildinfo
+.idea
+.vscode
+
+# Build artifacts
+theme.zip
+dist/
+node_modules/
+
+# Shopify CLI
+.shopifyignore
+.shopify

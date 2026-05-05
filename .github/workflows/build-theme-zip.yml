@@ -1,0 +1,42 @@
+name: Build Shopify Theme ZIP
+
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build theme.zip
+        run: |
+          mkdir -p dist
+          # ZIP only the directories Shopify expects, at the root of the archive.
+          zip -r dist/renuvia-care-theme.zip \
+            assets \
+            config \
+            layout \
+            locales \
+            sections \
+            snippets \
+            templates \
+            -x "*.DS_Store" "*.gitkeep"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: renuvia-care-theme
+          path: dist/renuvia-care-theme.zip
+          retention-days: 30
+
+      - name: Attach to release (on tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/renuvia-care-theme.zip

@@ -1,0 +1,47 @@
+{
+  "general": {
+    "search": { "placeholder": "Search", "submit": "Search", "title": "Search" },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you are looking for could not be found.",
+      "link": "Back to homepage"
+    },
+    "newsletter": {
+      "label": "Email",
+      "placeholder": "your@email.com",
+      "button": "Subscribe",
+      "success": "Thank you! Check your inbox for your discount code."
+    },
+    "pagination": { "previous": "Previous", "next": "Next" }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "color": "Color",
+      "save": "Save {{ savings }}"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Cart",
+      "empty": "Your cart is empty.",
+      "continue_shopping": "Continue shopping",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "shipping_at_checkout": "Calculated at checkout",
+      "total": "Total",
+      "checkout": "Checkout",
+      "remove": "Remove"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name", "email": "Email", "phone": "Phone", "message": "Message",
+      "send": "Send message", "success": "Thanks! We'll get back to you soon."
+    }
+  },
+  "blogs": { "article": { "read_more": "Read more" } }
+}
