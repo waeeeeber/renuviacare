@@ -6,7 +6,7 @@
     <div class="guarantees-block" style="display:grid; grid-template-columns: 1fr; gap: 1rem;">
       {%- for block in section.blocks -%}
         <div class="flex items-center gap-4" {{ block.shopify_attributes }}>
-          <div class="feature-icon" style="margin:0;">{% render block.settings.icon %}</div>
+          <div class="feature-icon" style="margin:0;">{% render 'render-icon', icon: block.settings.icon %}</div>
           <div>
             <div class="font-medium">{{ block.settings.title }}</div>
             <div class="text-sm text-muted">{{ block.settings.body }}</div>

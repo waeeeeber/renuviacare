@@ -1,11 +1,13 @@
-{%- assign product = all_products[section.settings.product] -%}
+{%- assign product = section.settings.product -%}
 <section class="showcase section">
   <div class="container grid grid-2">
     <div class="hero-image" style="aspect-ratio:1/1;">
       {%- if section.settings.image != blank -%}
-        <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ product.title | escape }}">
-      {%- elsif product.featured_image -%}
+        <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ product.title | default: section.settings.fallback_title | escape }}">
+      {%- elsif product != blank and product.featured_image != blank -%}
         <img src="{{ product.featured_image | image_url: width: 1400 }}" alt="{{ product.title | escape }}">
+      {%- else -%}
+        <div style="display:flex; align-items:center; justify-content:center; height:100%; background: var(--color-rose-100); color: var(--color-rose-600); font-family: 'Fraunces', serif; font-size: 6rem;">✦</div>
       {%- endif -%}
     </div>
     <div>
@@ -30,7 +32,7 @@
         </div>
       {%- endif -%}
       <div class="hero-cta">
-        <a href="{{ product.url | default: '/collections/all' }}" class="btn btn-light">{{ section.settings.button_label }}</a>
+        <a href="{% if product != blank %}{{ product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}" class="btn btn-light">{{ section.settings.button_label }}</a>
       </div>
     </div>
   </div>

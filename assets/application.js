@@ -194,7 +194,11 @@
     const idInput = picker.querySelector('input[name="id"]');
     const priceEl = document.querySelector('[data-product-price]');
     const compareEl = document.querySelector('[data-product-compare]');
-    const variantData = JSON.parse(picker.getAttribute('data-variants') || '[]');
+    const variantsScript = document.querySelector('[data-product-variants-json]');
+    let variantData = [];
+    if (variantsScript) {
+      try { variantData = JSON.parse(variantsScript.textContent); } catch (e) {}
+    }
     const labelEl = picker.querySelector('[data-variant-label]');
 
     swatches.forEach(sw => {

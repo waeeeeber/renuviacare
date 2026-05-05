@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "text": "Mit antibakteriellen Silberionen" } },
+        "h2": { "type": "highlight", "settings": { "text": "Quick-Dry Technologie · in 15 Min trocken" } },
+        "h3": { "type": "highlight", "settings": { "text": "Ergonomisch verlängert für den Rücken" } },
+        "h4": { "type": "highlight", "settings": { "text": "Dermatologisch empfohlen" } },
+        "h5": { "type": "highlight", "settings": { "text": "Gratis Versand in der Schweiz" } }
+      },
+      "block_order": ["h1", "h2", "h3", "h4", "h5"]
+    },
+    "features": {
+      "type": "feature-grid",
+      "settings": {
+        "eyebrow": "Produktdetails",
+        "heading": "Eine Liebeserklärung an deine Haut.",
+        "subheading": "Mit Renuvia Care wird deine Dusche zur Spa-Routine."
+      },
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "icon-leaf",
+            "title": "Sanft wirksam",
+            "body": "Entfernt abgestorbene Hautschuppen, ohne die Haut zu reizen."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "icon-arrows",
+            "title": "Erreicht den Rücken",
+            "body": "Verlängerte Form für müheloses Peelen schwer erreichbarer Stellen."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "icon-shield",
+            "title": "Hygienisch & schnell trocken",
+            "body": "Antibakterielle Silberionen – trocknet in unter 15 Minuten."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "icon-sparkle",
+            "title": "Spa-Erlebnis",
+            "body": "Verwandelt deine tägliche Dusche in eine Wellness-Routine."
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"]
+    },
+    "guarantees": {
+      "type": "guarantees",
+      "blocks": {
+        "g1": { "type": "item", "settings": { "icon": "icon-truck", "title": "Gratis Versand", "body": "Innerhalb der Schweiz" } },
+        "g2": { "type": "item", "settings": { "icon": "icon-return", "title": "30 Tage Rückgabe", "body": "Risikofrei testen" } },
+        "g3": { "type": "item", "settings": { "icon": "icon-lock", "title": "Sicher bezahlen", "body": "TWINT, Karte, PayPal" } }
+      },
+      "block_order": ["g1", "g2", "g3"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Reviews",
+        "heading": "Geliebt von 1’000+ Kund:innen."
+      },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "author": "Lara M.", "text": "Die beste Investition in meine Hautpflege-Routine. Fühlt sich an wie ein Spa-Besuch zuhause." } },
+        "r2": { "type": "review", "settings": { "author": "Sophie K.", "text": "Endlich ein Peeling-Tuch, das wirklich den Rücken erreicht. Qualität ist hervorragend." } },
+        "r3": { "type": "review", "settings": { "author": "Anna T.", "text": "Trocknet super schnell und riecht nicht. Die antibakterielle Wirkung merkt man wirklich." } }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    }
+  },
+  "order": ["main", "features", "guarantees", "testimonials"]
+}

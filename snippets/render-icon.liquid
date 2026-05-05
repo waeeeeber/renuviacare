@@ -1,0 +1,14 @@
+{%- case icon -%}
+  {%- when 'icon-leaf' -%}{% render 'icon-leaf' %}
+  {%- when 'icon-shield' -%}{% render 'icon-shield' %}
+  {%- when 'icon-arrows' -%}{% render 'icon-arrows' %}
+  {%- when 'icon-sparkle' -%}{% render 'icon-sparkle' %}
+  {%- when 'icon-truck' -%}{% render 'icon-truck' %}
+  {%- when 'icon-return' -%}{% render 'icon-return' %}
+  {%- when 'icon-lock' -%}{% render 'icon-lock' %}
+  {%- when 'icon-cart' -%}{% render 'icon-cart' %}
+  {%- when 'icon-star' -%}{% render 'icon-star' %}
+  {%- when 'icon-menu' -%}{% render 'icon-menu' %}
+  {%- when 'icon-close' -%}{% render 'icon-close' %}
+  {%- else -%}{% render 'icon-sparkle' %}
+{%- endcase -%}

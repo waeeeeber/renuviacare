@@ -8,9 +8,12 @@
           <img src="{{ current_variant.featured_image | image_url: width: 1400 }}" alt="{{ current_variant.featured_image.alt | escape }}">
         {%- elsif product.featured_image != blank -%}
           <img src="{{ product.featured_image | image_url: width: 1400 }}" alt="{{ product.title | escape }}">
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
         {%- endif -%}
         {%- if product.compare_at_price > product.price -%}
-          <span class="product-image-badge">−{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
+          {%- assign savings_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+          <span class="product-image-badge">−{{ savings_pct }}%</span>
         {%- endif -%}
       </div>
       {%- if product.images.size > 1 -%}
@@ -50,8 +53,8 @@
         {%- endif -%}
       </div>
 
-      <form method="post" action="{{ routes.cart_add_url }}" data-product-form data-variant-picker
-            data-variants='{{ product.variants | json | escape }}' enctype="multipart/form-data">
+      <script type="application/json" data-product-variants-json>{{ product.variants | json }}</script>
+      <form method="post" action="{{ routes.cart_add_url }}" data-product-form data-variant-picker enctype="multipart/form-data">
         {%- if product.variants.size > 1 -%}
           <div class="variants-label">
             {{ 'products.product.color' | t }}: <span class="text-muted" data-variant-label>{{ current_variant.title }}</span>

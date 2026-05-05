@@ -8,7 +8,7 @@
     <div class="grid grid-4">
       {%- for block in section.blocks -%}
         <div class="card feature-card" {{ block.shopify_attributes }}>
-          <div class="feature-icon">{% render block.settings.icon %}</div>
+          <div class="feature-icon">{% render 'render-icon', icon: block.settings.icon %}</div>
           <h3 class="font-display" style="font-size:1.25rem; margin-bottom:.5rem;">{{ block.settings.title }}</h3>
           <p class="text-sm text-muted" style="line-height:1.55; margin:0;">{{ block.settings.body }}</p>
         </div>

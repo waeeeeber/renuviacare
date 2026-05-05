@@ -64,15 +64,53 @@ templates/       index.json, product.json, collection.json, cart.json,
 - **Brand Tokens** – Farben (Ink/Cream/Rose) im Theme Editor anpassbar
 - **Schweizer Spa-Ästhetik** – Fraunces (display) + Inter (sans), 1’000+ Reviews Rating
 
-## Theme Editor Setup
+## Setup nach dem Theme-Upload
 
-Nach dem Hochladen in **Online Store → Themes → Customize**:
+### 1. Produkte anlegen (vor allem anderen!)
 
-1. **Hero-Section** – Bild, Headline, Buttons setzen
-2. **Produkt Showcase** – Bestseller-Produkt verlinken
-3. **Footer Menüs** – Links ins Hauptmenü und Footer-Menüs einsetzen
-4. **Theme Settings → Farben** – falls gewünscht anpassen
-5. **Page Templates** – `Kontakt`-Seite anlegen und Template `page.contact` zuweisen
+In **Shopify Admin → Products → Add product**:
+
+- **Title:** `Renuvia SilkTouch™`
+- **Description:** Bewerbungstext (z. B. "Antibakterielles Peeling-Duschtuch")
+- **Media:** Produktbilder hochladen
+- **Pricing:** CHF 44.95 (Compare at: CHF 49.95)
+- **Variants:** Optionsname "Farbe", Werte: `Pure White`, `Blossom Pink`
+- **Theme template** (rechte Seitenleiste): **silktouch** auswählen
+
+> Das Theme bringt die Vorlage `templates/product.silktouch.json` mit – sie sorgt für das spezifische Messaging (Sanft wirksam · Erreicht den Rücken · Hygienisch & schnell trocken · Spa-Erlebnis) auf der Produktseite.
+
+### 2. Hauptmenü konfigurieren
+
+**Online Store → Navigation → Main menu**, Links hinzufügen:
+
+- Home → `/`
+- SilkTouch™ → das eben erstellte Produkt verlinken
+- Über uns → Page (anlegen unter Online Store → Pages)
+- FAQ → Page
+- Kontakt → Page (Template "contact" zuweisen)
+
+### 3. Pages anlegen
+
+**Online Store → Pages → Add page**:
+
+- **Über uns** – Template: `page` (default)
+- **FAQ** – Template: `page`
+- **Kontakt** – Template: **`contact`** ← wichtig für das Kontaktformular
+
+### 4. Theme Editor – Customize
+
+**Online Store → Themes → Customize** (auf dem Renuvia Theme):
+
+1. **Home** auswählen oben in der Dropdown-Leiste
+2. **Hero** Section anklicken → Bild hochladen, Headline & Buttons setzen
+3. **Produkt Showcase** Section anklicken → Bestseller-Produkt (`Renuvia SilkTouch™`) verlinken
+4. **Footer** Section → Footer-Menüs verknüpfen
+5. **Theme Settings → Farben** – falls gewünscht anpassen
+6. **Save** oben rechts
+
+### 5. Theme als aktiv setzen
+
+**Online Store → Themes → Renuvia Care → Actions → Publish**
 
 ## Lizenz
 
